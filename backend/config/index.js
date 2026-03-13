@@ -2,11 +2,13 @@ require('dotenv').config()
 const db = require('./db')
 const web = require('./web')
 const secret = require('./secret')
+const newebpay = require('./newebpay')
 
 const config = {
   db,
   web,
-  secret
+  secret,
+  newebpay
 }
 
 class ConfigManager {

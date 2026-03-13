@@ -11,6 +11,8 @@ const adminRouter = require('./routes/admin')
 const coachRouter = require('./routes/coaches')
 const coursesRouter = require('./routes/courses')
 const uploadRouter = require('./routes/upload')
+const orderRouter = require('./routes/order')
+const newebpayRouter = require('./routes/newebpay')
 
 const app = express()
 app.use(cors())
@@ -41,6 +43,8 @@ app.use('/api/admin', adminRouter)
 app.use('/api/coaches', coachRouter)
 app.use('/api/courses', coursesRouter)
 app.use('/api/upload', uploadRouter)
+app.use('/api/orders', orderRouter)
+app.use('/api/newebpay', newebpayRouter)
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {

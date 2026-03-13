@@ -17,6 +17,7 @@ import {
   putUserPassword,
 } from "./users.js";
 import { postCourse, deleteCourse } from "./courses.js";
+import { createOrder } from "./order.js";
 import {
   getCoach,
   putCoach,
@@ -54,4 +55,5 @@ export {
   putCourses,
   getMonthlyRevenue,
   postPromoteUserToCoach,
+  createOrder,
 };
