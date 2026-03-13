@@ -107,7 +107,7 @@
 import { ref, computed, onMounted, getCurrentInstance } from "vue";
 import RedirectModal from "../../components/RedirectModal.vue";
 import FitnessPlanSuccessModal from "../../components/FitnessPlanSuccessModal.vue";
-import { getCreditPackages, createOrder } from "../../api/index.js";
+import { getCreditPackages, postCreditPackage } from "../../api/index.js";
 import { getDataFromCookieByKey } from "../../utils/cookie.js";
 import swalHandler from "../../utils/swalHandler.js";
 
@@ -163,30 +163,9 @@ async function buyCreditPackage(id) {
       openRedirectModal();
       return;
     }
-    const { status, data } = await createOrder(id);
+    const { status } = await postCreditPackage(id);
     if (status === "success") {
-      // 建立隱藏表單，提交到藍新金流付款頁面
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = data.paymentGateway;
-
-      const fields = {
-        MerchantID: data.MerchantID,
-        TradeInfo: data.TradeInfo,
-        TradeSha: data.TradeSha,
-        Version: data.Version,
-      };
-
-      Object.entries(fields).forEach(([key, value]) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      });
-
-      document.body.appendChild(form);
-      form.submit();
+      openFitnessPlanSuccessModal();
     }
   } catch (error) {
     let msg = error.message;
