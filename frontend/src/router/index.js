@@ -23,6 +23,10 @@ const routes = [
     component: () => import("../pages/public/FitnessPlans.vue"),
   },
   {
+    path: "/payment-result",
+    component: () => import("../pages/public/PaymentResult.vue"),
+  },
+  {
     path: "/login",
     component: () => import("../pages/public/auth/LoginView.vue"),
   },
